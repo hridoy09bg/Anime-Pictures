@@ -1,39 +1,36 @@
-document.getElementById('fetch-btn').addEventListener('click', async () => {
-    const loader = document.getElementById('loader');
-    const imgElement = document.getElementById('anime-img');
-    const button = document.getElementById('fetch-btn');
-    const downloadBtn = document.getElementById('download-btn');
-  
-    // Show loader and disable button
-    loader.classList.remove('hidden');
-    button.disabled = true;
-  
+document.addEventListener("DOMContentLoaded", () => {
+  const fetchBtn = document.getElementById("fetch-btn");
+  const animeImg = document.getElementById("anime-img");
+  const loader = document.getElementById("loader");
+  const downloadBtn = document.getElementById("download-btn");
+
+  fetchBtn.addEventListener("click", async () => {
+    loader.classList.remove("hidden");
+    animeImg.classList.add("loading");
+
     try {
-      const response = await fetch('/api/api/animepfp.php?api=d3ee2bd5411a44308577ed90abe0fa30');
+      const response = await fetch('/api/animepfp.php');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      imgElement.src = data.image_url;
-  
-      // Hide loader and show image and download button
-      loader.classList.add('hidden');
-      imgElement.classList.remove('hidden');
-      imgElement.classList.add('opacity-100');
-      downloadBtn.classList.remove('hidden');
-      downloadBtn.onclick = () => {
-        const link = document.createElement('a');
-        link.href = data.image_url;
-        link.download = 'anime_profile_picture.jpg';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      animeImg.src = data.url;
+      animeImg.onload = () => {
+        loader.classList.add("hidden");
+        animeImg.classList.remove("loading");
+        animeImg.classList.add("loaded");
+        downloadBtn.classList.remove("hidden");
       };
     } catch (error) {
       console.error('Error fetching the anime profile picture:', error);
-    } finally {
-      // Re-enable button
-      button.disabled = false;
+      loader.classList.add("hidden");
     }
   });
-  
+
+  downloadBtn.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = animeImg.src;
+    link.download = "anime-profile-picture.jpg";
+    link.click();
+  });
+});
