@@ -4,43 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anime Profile Picture</title>
-  <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="flex-container">
     <div class="flex-item">
-      <h1 class="text-3xl font-bold mb-6 animate__animated animate__fadeInDown">Anime Profile Picture</h1>
+      <h1 class="text-3xl font-bold mb-6">Anime Profile Picture</h1>
       <div class="button-container">
         <button id="fetch-btn" class="btn mb-6">
-          <svg class="sparkle" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M12 2l1.09 3.36L16.6 8l-3.36 1.09L12 12l-1.09-2.91L7.6 8l3.36-1.09L12 2z"/>
-          </svg>
           <span class="text">Get Picture</span>
         </button>
       </div>
       <div class="mt-6">
         <div id="loader" class="hidden animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
-        <img id="anime-img" src="https://i.pinimg.com/564x/72/fa/62/72fa6241dba1da9bedb25a69c2332d34.jpg" alt="Anime Profile Picture" class="anime-img hidden mx-auto rounded-full shadow-lg transition-opacity duration-500 opacity-0 mt-6">
-      </div>
-      <div class="button-container">
-        <button id="download-btn" class="btn hidden mt-6">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24px" width="24px">
-            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-            <g id="SVGRepo_iconCarrier">
-              <g id="Interface / Download">
-                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f1f1f1" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" id="Vector"></path>
-              </g>
-            </g>
-          </svg>
-          Download
-          <div class="absolute opacity-0 -bottom-full rounded-md py-2 px-2 bg-black bg-opacity-70 left-1/2 -translate-x-1/2 group-hover:opacity-100 transition-opacity shadow-lg">
-            
-          </div>
-        </button>
+        <img id="anime-img" class="hidden mx-auto rounded-full shadow-lg transition-opacity duration-500 opacity-0 mt-6" alt="Anime Profile Picture">
       </div>
     </div>
   </div>
-  <script type="module" src="/src/main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
