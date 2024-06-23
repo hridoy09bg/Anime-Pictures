@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animeImg.classList.add("loading");
 
     try {
-      const response = await fetch('https://eliana-pictures.vercel.app/api/animepfp.php');
+      const response = await fetch('https://raw.githubusercontent.com/hridoy09bg/Anime-Pictures/main/api/animepfp.php');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
