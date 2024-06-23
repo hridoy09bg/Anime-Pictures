@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animeImg.classList.add("loading");
 
     try {
-      const response = await fetch('/api/animepfp.php');
+      const response = await fetch('https://eliana-pictures.vercel.app/api/animepfp.php');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error('Error fetching the anime profile picture:', error);
       loader.classList.add("hidden");
+      // Optionally, display an error message to the user
+      // alert('Failed to fetch anime profile picture. Please try again later.');
     }
   });
 
