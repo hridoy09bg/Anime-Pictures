@@ -5,27 +5,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadBtn = document.getElementById("download-btn");
 
   fetchBtn.addEventListener("click", async () => {
-    loader.classList.remove("hidden");
-    animeImg.classList.add("loading");
+    loader.classList.remove("hidden"); // Show loader animation
 
     try {
       const response = await fetch('https://raw.githubusercontent.com/hridoy09bg/Anime-Pictures/main/api/animepfp.php');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
-      animeImg.src = data.url;
+      const imageUrl = await response.text(); // Assuming it returns a direct image URL
+      animeImg.src = imageUrl;
       animeImg.onload = () => {
-        loader.classList.add("hidden");
-        animeImg.classList.remove("loading");
-        animeImg.classList.add("loaded");
-        downloadBtn.classList.remove("hidden");
+        loader.classList.add("hidden"); // Hide loader on image load
+        animeImg.classList.remove("hidden"); // Show image
+        downloadBtn.classList.remove("hidden"); // Show download button
       };
     } catch (error) {
       console.error('Error fetching the anime profile picture:', error);
-      loader.classList.add("hidden");
-      // Optionally, display an error message to the user
+      // Handle error: display an error message to the user or retry logic
       // alert('Failed to fetch anime profile picture. Please try again later.');
+      loader.classList.add("hidden"); // Hide loader on error
     }
   });
 
