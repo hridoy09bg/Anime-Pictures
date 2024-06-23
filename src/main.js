@@ -2,12 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const fetchBtn = document.getElementById("fetch-btn");
   const animeImg = document.getElementById("anime-img");
   const loader = document.getElementById("loader");
-  const downloadBtn = document.getElementById("download-btn");
 
   fetchBtn.addEventListener("click", async () => {
     loader.classList.remove("hidden"); // Show loader animation
     animeImg.classList.add("hidden"); // Hide image initially
-    downloadBtn.classList.add("hidden"); // Hide download button initially
 
     try {
       const imageUrl = await fetchAnimeImageUrl();
@@ -18,14 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
       animeImg.onload = () => {
         loader.classList.add("hidden"); // Hide loader on image load
         animeImg.classList.remove("hidden"); // Show image
-        downloadBtn.classList.remove("hidden"); // Show download button
       };
 
       animeImg.onerror = (error) => {
         console.error("Image load failed:", error);
         loader.classList.add("hidden"); // Hide loader on error
         animeImg.classList.add("hidden"); // Hide image on error
-        downloadBtn.classList.add("hidden"); // Hide download button on error
       };
 
       animeImg.src = imageUrl;
@@ -35,15 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // alert("Failed to fetch anime profile picture. Please try again later.");
       loader.classList.add("hidden"); // Hide loader on error
       animeImg.classList.add("hidden"); // Hide image on error
-      downloadBtn.classList.add("hidden"); // Hide download button on error
     }
-  });
-
-  downloadBtn.addEventListener("click", () => {
-    const link = document.createElement("a");
-    link.href = animeImg.src;
-    link.download = "anime-profile-picture.jpg";
-    link.click();
   });
 
   async function fetchAnimeImageUrl() {
